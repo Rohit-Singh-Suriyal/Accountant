@@ -1,0 +1,37 @@
+import "./App.css"
+import { useReducer, useRef } from "react";
+function App() {
+  const inputref=useRef();
+ const fecthdata=async()=>{
+  const res=await fetch("http://localhost:3000/employee");
+  const data=await res.json();
+  console.log(data);
+  for(let i=0;i<data.length;i++){
+   
+     if(inputref.current.value===data[i].name){
+      console.log("rohit");
+      console.log(data[i].about.description);
+     }
+  }
+  
+ }
+ const submithandler=()=>{
+  fecthdata();
+ }
+ 
+
+  return (
+    <>
+    <div className="box"> 
+    <input className="input" ref={inputref}>
+    </input>
+    <button onClick={submithandler}>Submit</button>
+    </div>
+    
+
+
+     </>
+  )
+}
+
+export default App
